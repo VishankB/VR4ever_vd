@@ -3,30 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Happy Valentine’s Day ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 <style>
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Segoe UI', sans-serif;
 
-  /* 🌹 Romantic Dreamy Background */
   background:
     linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
     url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1600&q=80");
 
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   animation: slowZoom 25s infinite alternate ease-in-out;
 }
 
-/* Soft zoom animation */
+/* Smooth zoom */
 @keyframes slowZoom {
   from { background-size: 100%; }
   to { background-size: 110%; }
@@ -45,11 +43,11 @@ body {
   100% { transform: translateY(-110vh) scale(1.4); opacity:0; }
 }
 
-/* Sparkle flashes */
+/* Sparkles */
 .sparkle {
   position: absolute;
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   background: white;
   border-radius: 50%;
   box-shadow: 0 0 10px white, 0 0 20px #ff99cc;
@@ -59,13 +57,14 @@ body {
 
 @keyframes twinkle {
   0%,100% { opacity:0; transform:scale(0.5); }
-  50% { opacity:1; transform:scale(1.6); }
+  50% { opacity:1; transform:scale(1.5); }
 }
 
 /* Card */
 .card {
-  width: 350px;
-  height: 450px;
+  width: 90%;
+  max-width: 350px;
+  height: 480px;
   perspective: 1000px;
   z-index: 2;
   position: relative;
@@ -75,7 +74,7 @@ body {
 .card::before {
   content: "";
   position: absolute;
-  inset: -6px;
+  inset: -5px;
   border-radius: 25px;
   background: linear-gradient(45deg,#ff4e50,#ff6a88,#ff99ac);
   filter: blur(18px);
@@ -93,7 +92,6 @@ body {
   height: 100%;
   transition: transform 1s;
   transform-style: preserve-3d;
-  position: relative;
 }
 
 .card.flip .inner {
@@ -110,7 +108,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding: 25px;
   text-align: center;
   box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
@@ -125,10 +123,13 @@ body {
   background: rgba(255,255,255,0.95);
   color: #ff4e50;
   transform: rotateY(180deg);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
+/* Heart button */
 .heart {
-  font-size: 5em;
+  font-size: 4em;
   cursor: pointer;
   animation: pulse 2s infinite;
 }
@@ -142,7 +143,7 @@ body {
 /* Burst */
 .burst {
   position: fixed;
-  font-size: 30px;
+  font-size: 24px;
   pointer-events: none;
   animation: explode 2s forwards;
   z-index: 5;
@@ -152,6 +153,13 @@ body {
   0% { transform: scale(1) translate(0,0); opacity:1; }
   100% { transform: scale(2) translate(var(--x), var(--y)); opacity:0; }
 }
+
+/* Mobile height adjustment */
+@media (max-height: 650px) {
+  .card {
+    height: 420px;
+  }
+}
 </style>
 </head>
 <body>
@@ -160,35 +168,32 @@ body {
   <div class="inner">
 
     <div class="front">
-      <h1>Happy Valentine’s Day Ranu❤️</h1>
+      <h2>Happy Valentine’s Day Ranu ❤️</h2>
       <div class="heart" onclick="startAnimation(event)">❤️</div>
-      <p>Click on this beautiful heart</p>
+      <p>Tap the heart</p>
     </div>
 
     <div class="back">
-      <h2>My Forever Love, My Jaan ❤️</h2>
+      <h3>My Forever Love ❤️</h3>
       <p>
-        My Baby ❤️,
-        From the moment you came into my life,<br>
-        everything became brighter and softer.<br>
-        You are my peace in chaos,<br>
-        my smile in sadness,<br>
+        My Baby ❤️,<br><br>
+        From the moment you came into my life,
+        everything became brighter and softer.<br><br>
+
+        You are my peace in chaos,
+        my smile in sadness,
         and my forever in this lifetime.<br><br>
 
-        I don’t just love you…<br>
-        I choose you — every single day. 💞
-        You are my today,my tomorrow,<br>
-        and my always.<br><br>
-        Your voice calms my storms.
-        Your smile keeps me happy
-        Your love gives me more power<br>
-        I love you more than words can say ❤️<br>
-        I promise to love you deeper each day.
+        I don’t just love you…
+        I choose you every single day 💞<br><br>
 
-        You are not just my Valentine…
-        You are my forever & my world. 💍💖
+        You are my today,
+        my tomorrow,
+        and my always.<br><br>
+
+        I love you more than words can say ❤️
       </p>
-      <p><strong>— Forever Yours Baby - V❤️</strong></p>
+      <strong>— Forever Yours Baby - V ❤️</strong>
     </div>
 
   </div>
@@ -196,17 +201,18 @@ body {
 
 <script>
 const hearts = ["❤️","💖","💕"];
-for(let i=0;i<30;i++){
+
+for(let i=0;i<25;i++){
   let h=document.createElement("div");
   h.className="float-heart";
   h.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
   h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(15+Math.random()*25)+"px";
+  h.style.fontSize=(12+Math.random()*20)+"px";
   h.style.animationDuration=(5+Math.random()*5)+"s";
   document.body.appendChild(h);
 }
 
-for(let i=0;i<40;i++){
+for(let i=0;i<35;i++){
   let s=document.createElement("div");
   s.className="sparkle";
   s.style.left=Math.random()*100+"vw";
@@ -221,7 +227,7 @@ function startAnimation(e){
   const centerX=rect.left+rect.width/2;
   const centerY=rect.top+rect.height/2;
 
-  for(let i=0;i<15;i++){
+  for(let i=0;i<12;i++){
     let burst=document.createElement("div");
     burst.className="burst";
     burst.innerHTML="❤️";
