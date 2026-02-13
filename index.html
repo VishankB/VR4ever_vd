@@ -15,14 +15,21 @@ body {
   justify-content: center;
   font-family: 'Segoe UI', sans-serif;
 
-  /* ✅ NEW Romantic Background */
+  /* 🌹 Romantic Dreamy Background */
   background:
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-    url("https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=1600&q=80");
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1600&q=80");
 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  animation: slowZoom 25s infinite alternate ease-in-out;
+}
+
+/* Soft zoom animation */
+@keyframes slowZoom {
+  from { background-size: 100%; }
+  to { background-size: 110%; }
 }
 
 /* Floating hearts */
@@ -45,14 +52,14 @@ body {
   height: 6px;
   background: white;
   border-radius: 50%;
-  box-shadow: 0 0 10px white, 0 0 20px #ff99ac;
+  box-shadow: 0 0 10px white, 0 0 20px #ff99cc;
   animation: twinkle 2s infinite ease-in-out;
   z-index: 0;
 }
 
 @keyframes twinkle {
   0%,100% { opacity:0; transform:scale(0.5); }
-  50% { opacity:1; transform:scale(1.5); }
+  50% { opacity:1; transform:scale(1.6); }
 }
 
 /* Card */
@@ -68,10 +75,10 @@ body {
 .card::before {
   content: "";
   position: absolute;
-  inset: -5px;
+  inset: -6px;
   border-radius: 25px;
   background: linear-gradient(45deg,#ff4e50,#ff6a88,#ff99ac);
-  filter: blur(15px);
+  filter: blur(18px);
   z-index: -1;
   animation: glow 3s infinite alternate;
 }
@@ -105,12 +112,12 @@ body {
   align-items: center;
   padding: 30px;
   text-align: center;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
 .front {
   background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(18px);
   color: white;
 }
 
@@ -132,7 +139,7 @@ body {
   100% { transform: scale(1); }
 }
 
-/* Burst hearts */
+/* Burst */
 .burst {
   position: fixed;
   font-size: 30px;
@@ -164,7 +171,7 @@ body {
         You are my today,<br>
         my tomorrow,<br>
         and my always.<br><br>
-        Happy Valentine’s Day ❤️
+        I love you more than words can say ❤️
       </p>
       <p><strong>— Forever Yours ❤️</strong></p>
     </div>
@@ -173,7 +180,6 @@ body {
 </div>
 
 <script>
-/* Floating hearts */
 const hearts = ["❤️","💖","💕"];
 for(let i=0;i<30;i++){
   let h=document.createElement("div");
@@ -185,7 +191,6 @@ for(let i=0;i<30;i++){
   document.body.appendChild(h);
 }
 
-/* Sparkles */
 for(let i=0;i<40;i++){
   let s=document.createElement("div");
   s.className="sparkle";
