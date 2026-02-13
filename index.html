@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Valentine’s Day ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#ff4e50,#fc913a);
+  overflow-x: hidden;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  margin: 30px 0;
+  font-size: 2.5em;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 30px;
+}
+
+.card {
+  perspective: 1000px;
+  height: 260px;
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card.flip .inner {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.front {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  font-size: 1.4em;
+  cursor: pointer;
+}
+
+.back {
+  background: white;
+  color: #ff4e50;
+  transform: rotateY(180deg);
+  font-size: 0.95em;
+}
+
+.emoji {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.float {
+  position: fixed;
+  bottom: -20px;
+  animation: floatUp 8s linear infinite;
+  z-index: -1;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity:1; }
+  100% { transform: translateY(-110vh); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Happy Valentine’s Day My Love ❤️</h1>
+
+<div class="container">
+
+  <!-- Rose -->
+  <div class="card" onclick="flip(this)">
+    <div class="inner">
+      <div class="front"><div class="emoji">🌹</div>Rose Day</div>
+      <div class="back">You are more beautiful than every rose in this world ❤️</div>
+    </div>
+  </div>
+
+  <!-- Propose -->
+  <div class="card" onclick="flip(this)">
+    <div class="inner">
+      <div class="front"><div class="emoji">💍</div>Propose Day</div>
+      <div class="back">Will you stay with me today, tomorrow and forever? 💖</div>
+    </div>
+  </div>
+
+  <!-- Chocolate -->
+  <div class="card" onclick="flip(this)">
+    <div class="inner">
+      <div class="front"><div class="emoji">🍫</div>Chocolate Day</div>
+      <div class="back">Life is sweeter with you in it 🍫❤️</div>
+    </div>
+  </div>
+
+  <!-- Teddy -->
+  <div class="card" onclick="flip(this)">
+    <div class="inner">
+      <div class="front"><div class="emoji">🧸</div>Teddy Day</div>
+      <div class="back">Sending you the warmest cuddles always 🧸💞</div>
+    </div>
+  </div>
+
+  <!-- Promise -->
+  <div class="card" onclick="flip(this)">
+    <div class="inner">
+      <div class="front"><div class="emoji">🤝</div>Promise Day</div>
+      <div class="back">I promise to love you more every single day 💗</div>
+    </div>
+  </div>
+
+  <!-- Hug -->
+  <div class="card" onclick="flip(this)">
+    <div class="inner">
+      <div class="front"><div class="emoji">🫂</div>Hug Day</div>
+      <div class="back">In your arms is where I belong 🫂❤️</div>
+    </div>
+  </div>
+
+  <!-- Kiss -->
+  <div class="card" onclick="flip(this)">
+    <div class="inner">
+      <div class="front"><div class="emoji">💋</div>Kiss Day</div>
+      <div class="back">Every kiss from you feels like forever 😘</div>
+    </div>
+  </div>
+
+  <!-- Valentine -->
+  <div class="card" onclick="flip(this)">
+    <div class="inner">
+      <div class="front"><div class="emoji">❤️</div>Valentine’s Day</div>
+      <div class="back">You are my today, my tomorrow, and my always ❤️</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function flip(card){
+  card.classList.toggle("flip");
+}
+
+const symbols = ["❤️","💖","💕","✨"];
+
+for(let i=0;i<30;i++){
+  let f=document.createElement("div");
+  f.className="float";
+  f.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
+  f.style.left=Math.random()*100+"vw";
+  f.style.fontSize=(15+Math.random()*20)+"px";
+  f.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(f);
+}
+</script>
+
+</body>
+</html>
