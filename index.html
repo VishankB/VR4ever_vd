@@ -8,36 +8,41 @@
 <style>
 body {
   margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg,#ff4e50,#fc913a);
-  overflow-x: hidden;
-  color: white;
-  text-align: center;
+  background: linear-gradient(135deg,#ff4e50,#ff6a88);
 }
 
-h1 {
-  margin: 30px 0;
-  font-size: 2.5em;
+/* Floating hearts */
+.float {
+  position: absolute;
+  animation: floatUp 8s linear infinite;
+  z-index: 0;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-  padding: 30px;
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0.8); opacity:1; }
+  100% { transform: translateY(-10vh) scale(1.4); opacity:0; }
 }
 
 .card {
+  width: 350px;
+  height: 450px;
   perspective: 1000px;
-  height: 260px;
+  z-index: 2;
+  position: relative;
 }
 
 .inner {
   width: 100%;
   height: 100%;
-  position: relative;
-  transition: transform 0.8s;
+  transition: transform 1s;
   transform-style: preserve-3d;
+  position: relative;
 }
 
 .card.flip .inner {
@@ -48,136 +53,116 @@ h1 {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 15px;
+  border-radius: 20px;
   backface-visibility: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  padding: 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
 
 .front {
   background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  font-size: 1.4em;
-  cursor: pointer;
+  backdrop-filter: blur(12px);
+  color: white;
 }
 
 .back {
   background: white;
   color: #ff4e50;
   transform: rotateY(180deg);
-  font-size: 0.95em;
 }
 
-.emoji {
-  font-size: 2.5em;
-  margin-bottom: 10px;
+.heart {
+  font-size: 5em;
+  cursor: pointer;
+  animation: pulse 2s infinite;
 }
 
-.float {
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Burst */
+.burst {
   position: fixed;
-  bottom: -20px;
-  animation: floatUp 8s linear infinite;
-  z-index: -1;
+  font-size: 28px;
+  pointer-events: none;
+  animation: explode 2s forwards;
+  z-index: 5;
 }
 
-@keyframes floatUp {
-  0% { transform: translateY(0); opacity:1; }
-  100% { transform: translateY(-110vh); opacity:0; }
+@keyframes explode {
+  0% { transform: scale(1) translate(0,0); opacity:1; }
+  100% { transform: scale(2) translate(var(--x), var(--y)); opacity:0; }
 }
 </style>
 </head>
-
 <body>
 
-<h1>Happy Valentine’s Day My Love ❤️</h1>
+<div class="card" id="card">
+  <div class="inner">
 
-<div class="container">
-
-  <!-- Rose -->
-  <div class="card" onclick="flip(this)">
-    <div class="inner">
-      <div class="front"><div class="emoji">🌹</div>Rose Day</div>
-      <div class="back">You are more beautiful than every rose in this world ❤️</div>
+    <div class="front">
+      <h1>Happy Valentine’s Day ❤️</h1>
+      <div class="heart" onclick="startAnimation(event)">❤️</div>
+      <p>Tap the heart</p>
     </div>
-  </div>
 
-  <!-- Propose -->
-  <div class="card" onclick="flip(this)">
-    <div class="inner">
-      <div class="front"><div class="emoji">💍</div>Propose Day</div>
-      <div class="back">Will you stay with me today, tomorrow and forever? 💖</div>
+    <div class="back">
+      <h2>My Forever Love ❤️</h2>
+      <p>
+        You are my today,<br>
+        my tomorrow,<br>
+        and my always.<br><br>
+        Happy Valentine’s Day ❤️
+      </p>
+      <p><strong>— Forever Yours ❤️</strong></p>
     </div>
-  </div>
 
-  <!-- Chocolate -->
-  <div class="card" onclick="flip(this)">
-    <div class="inner">
-      <div class="front"><div class="emoji">🍫</div>Chocolate Day</div>
-      <div class="back">Life is sweeter with you in it 🍫❤️</div>
-    </div>
   </div>
-
-  <!-- Teddy -->
-  <div class="card" onclick="flip(this)">
-    <div class="inner">
-      <div class="front"><div class="emoji">🧸</div>Teddy Day</div>
-      <div class="back">Sending you the warmest cuddles always 🧸💞</div>
-    </div>
-  </div>
-
-  <!-- Promise -->
-  <div class="card" onclick="flip(this)">
-    <div class="inner">
-      <div class="front"><div class="emoji">🤝</div>Promise Day</div>
-      <div class="back">I promise to love you more every single day 💗</div>
-    </div>
-  </div>
-
-  <!-- Hug -->
-  <div class="card" onclick="flip(this)">
-    <div class="inner">
-      <div class="front"><div class="emoji">🫂</div>Hug Day</div>
-      <div class="back">In your arms is where I belong 🫂❤️</div>
-    </div>
-  </div>
-
-  <!-- Kiss -->
-  <div class="card" onclick="flip(this)">
-    <div class="inner">
-      <div class="front"><div class="emoji">💋</div>Kiss Day</div>
-      <div class="back">Every kiss from you feels like forever 😘</div>
-    </div>
-  </div>
-
-  <!-- Valentine -->
-  <div class="card" onclick="flip(this)">
-    <div class="inner">
-      <div class="front"><div class="emoji">❤️</div>Valentine’s Day</div>
-      <div class="back">You are my today, my tomorrow, and my always ❤️</div>
-    </div>
-  </div>
-
 </div>
 
 <script>
-function flip(card){
-  card.classList.toggle("flip");
-}
-
 const symbols = ["❤️","💖","💕","✨"];
 
+/* Floating hearts */
 for(let i=0;i<30;i++){
   let f=document.createElement("div");
   f.className="float";
   f.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
   f.style.left=Math.random()*100+"vw";
-  f.style.fontSize=(15+Math.random()*20)+"px";
+  f.style.fontSize=(15+Math.random()*25)+"px";
   f.style.animationDuration=(5+Math.random()*5)+"s";
   document.body.appendChild(f);
+}
+
+function startAnimation(e){
+  const card=document.getElementById("card");
+  const rect=e.target.getBoundingClientRect();
+  const centerX=rect.left+rect.width/2;
+  const centerY=rect.top+rect.height/2;
+
+  for(let i=0;i<15;i++){
+    let burst=document.createElement("div");
+    burst.className="burst";
+    burst.innerHTML="❤️";
+    burst.style.left=centerX+"px";
+    burst.style.top=centerY+"px";
+    burst.style.setProperty("--x",(Math.random()*200-100)+"px");
+    burst.style.setProperty("--y",(Math.random()*200-100)+"px");
+    document.body.appendChild(burst);
+    setTimeout(()=>burst.remove(),2000);
+  }
+
+  setTimeout(()=>{
+    card.classList.add("flip");
+  },2000);
 }
 </script>
 
